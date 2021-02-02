@@ -7,18 +7,31 @@ ILGON uses the same address scheme as Ethereum, and Ethereum smart contracts run
 ## Main parameters about ILGON
 
 **Symbol:** ILG
+
 **Network ID:** 0x696c67
+
 **Premine amount:** 180.000.000 ILG
+
 **Block reward (current):** 20 ILG
+
 **Block time (target):** 5s
+
 **Block gas limit (target):** >= 20.000.000
+
 **Min gas price:** 1 gwei (will be increased to about USD 0.03 equivalent for 21000 gas to protect against flooding the network)
+
 **Technology**: Ethereum based
+
 **Smart contracts**: full ethereum compatibility
+
 **API**: same as openethereum v3.0.1
+
 **Consensus mechanism:** Openethereum POhA Authority round
+
 **Number of POA validators:** 3 (to be increased to 7 by 2021 february 10)
+
 **Default port:** 30303 UDP and TCP
+
 **Default RPC port:** 8545
 
 ## Design, components
@@ -29,6 +42,7 @@ The current network topology of the ILGON and some connected services is shown o
 Validators are the core of the system so they are hidden behind the tor network to prevent DOS attacks against them.
 
 The Main components are:
+
 * Validators (V1, V2, ..)
 * Bootnodes (BN1, BN2, ...)
 * Ordinary netwrok nodes (N1, N2, ..)
@@ -92,6 +106,7 @@ ILGON has a mainnet and a public testnet available to the public.
 ## Running a node
 
 ILGON builds on the Authority round consensus mechanism of **openethereum v3.0.1**. After 3.0.1 openethereum removed some features necessary for fee governance so running an ILGON node - currently - requires you to download and run openethereum v3.0.1.
+
 We are working on the foundation of Openethereum to make a more generic governance model possible. Our target is to achieve a dPoS modus operandi in the coming 1-2 years but vanilla openethereum node software is a good start to build trust. So - for now - you won't be required to run any custom node software.
 
 So how is it possible to use the openethereum node software to run a different netwok? It is the genesis block, spegicically the genesis JSON file that has to be properly provided.
