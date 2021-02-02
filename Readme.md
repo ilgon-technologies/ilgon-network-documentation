@@ -134,6 +134,17 @@ For the testnet use:
 openethereum --chain ilgtGenesis.json ......
 ```
 
+### Use the pre-built docker images
+
+There are some prebuilt fullnode docker images on dockerhub for the network:
+ 
+https://hub.docker.com/u/ilgon
+
+The ilgnode and ilgtnode images are normal archive nodes without open RPC ports,
+the publicilgnode and publicilgtnode builds also expose the necessary RPC port for node communication but only allows the secure RPC commands to be executed.
+
+The monitorclient is just a node image to monitor the healthyness of a node by monitoring the last block timestamp.
+
 ## Smart contracts
 
 Ethereum smart contracts run on ILGON out of the box. You can use your usual tools. There is no need to change anything, just compile, deploy and enjoy! :)
