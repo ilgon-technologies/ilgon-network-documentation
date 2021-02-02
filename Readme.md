@@ -6,32 +6,19 @@ ILGON uses the same address scheme as Ethereum, and Ethereum smart contracts run
 
 ## Main parameters about ILGON
 
-**Symbol:** ILG
-
-**Network ID:** 0x696c67
-
-**Premine amount:** 180.000.000 ILG
-
-**Block reward (current):** 20 ILG
-
-**Block time (target):** 5s
-
-**Block gas limit (target):** >= 20.000.000
-
-**Min gas price:** 1 gwei (will be increased to about USD 0.03 equivalent for 21000 gas to protect against flooding the network)
-
-**Technology**: Ethereum based
-
-**Smart contracts**: full ethereum compatibility
-
-**API**: same as openethereum v3.0.1
-
-**Consensus mechanism:** Openethereum POhA Authority round
-
-**Number of POA validators:** 3 (to be increased to 7 by 2021 february 10)
-
-**Default port:** 30303 UDP and TCP
-
+**Symbol:** ILG  
+**Network ID:** 0x696c67  
+**Premine amount:** 180.000.000 ILG  
+**Block reward (current):** 20 ILG  
+**Block time (target):** 5s  
+**Block gas limit (target):** >= 20.000.000  
+**Min gas price:** 1 gwei (will be increased to about USD 0.03 equivalent for 21000 gas to protect against flooding the network)  
+**Technology**: Ethereum based  
+**Smart contracts**: full ethereum compatibility  
+**API**: same as openethereum v3.0.1  
+**Consensus mechanism:** Openethereum POhA Authority round  
+**Number of POA validators:** 3 (to be increased to 7 by 2021 february 10)  
+**Default port:** 30303 UDP and TCP  
 **Default RPC port:** 8545
 
 ## Design, components
