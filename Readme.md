@@ -39,7 +39,7 @@ The Main components are:
 * Explorer (https://ilgonexplorer.com)
 * Mobile wallets (not in the store yet)
 * Web wallet + widget (https://ilgonwallet.com)
-* RPC API (https://rpc-mainnet.ilgonwallet.com)h
+* RPC API (https://rpc-mainnet.ilgonwallet.com)
 * connected services (eHáz, Data storage)
 
 We will talk about these components in detail later.
@@ -53,9 +53,9 @@ ILGON has a mainnet and a public testnet available to the public.
 * genesis block: https://gitlab.com/ilc-projekt/ilc-project-infrastructure/mainnet-genesis
 * network id: 0x696c67
 * symbol: ILG
-* wallet: ilgonwallet.com (through cloudflare)
+* wallet: https://ilgonwallet.com/ (through cloudflare)
 * explorer: https://www.ilgonexplorer.com/ (through cloudflare)
-* RPC: https://mainnet-rpc.ilgonwallet.com (through cloudflare)
+* RPC: https://mainnet-rpc.ilgonwallet.com/ (through cloudflare)
 * validator addresses:
   * 0x236acb7b5127e88fd54c5492d570c2b33591dc4d
   * 0xb534163f6e9e4258c0ff4eaea2f480ae43ababaa
@@ -96,7 +96,7 @@ ILGON builds on the Authority round consensus mechanism of **openethereum v3.0.1
 
 We are working on the foundation of Openethereum to make a more generic governance model possible. Our target is to achieve a dPoS modus operandi in the coming 1-2 years but vanilla openethereum node software is a good start to build trust. So - for now - you won't be required to run any custom node software.
 
-So how is it possible to use the openethereum node software to run a different netwok? It is the genesis block, spegicically the genesis JSON file that has to be properly provided.
+So how is it possible to use the openethereum node software to run a different netwok? It is the genesis block, specifically the genesis JSON file that has to be properly provided.
 
 ### Genesis block/genesis JSON
 
@@ -114,7 +114,7 @@ The genesis block of the main network and the testnet are provided in the below 
 * https://gitlab.com/ilc-projekt/ilc-project-infrastructure/mainnet-genesis
 * https://gitlab.com/ilc-projekt/ilc-project-infrastructure/testnet-genesis
 
-We have also inclided the 2 genesis files in this repository here:
+We have also included the 2 genesis files in this repository here:
 * mainnet: [ilgGenesis.json](ilgGenesis.json)
 * testnet: [ilgtGenesis.json](ilgtGenesis.json)
 
@@ -146,6 +146,7 @@ The main tools that we suggest you to use:
 * Remix IDE
 * Truffle
 * Ganache
+* Metamask
 
 ## Deep technical details
 
