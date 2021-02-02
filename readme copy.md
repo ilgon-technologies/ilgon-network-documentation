@@ -1,6 +1,7 @@
 # ILGON network documentation
 
-The ILGON network is an ethereum based network, technically very similar to the like the xDai chain and fully compatible with ethereum. ILGON is using Parity Openethereum V3.0.1 with the POA Authority round consensus mechanism so on the surface and the node API level it is identical to ethereum.
+The ILGON network is an ethereum based network, technically very similar to the like the xDai chain and fully compatible with ethereum. ILGON is using Parity Openethereum V3.0.1 with the POA Authority round consensus mechanism so on the surface and on the node API level it is identical to Ethereum.
+
 ILGON uses the same address scheme as Ethereum, and Ethereum smart contracts run on ILGON out of the box. Similarly, wallets that support adding custom ETH networks should support the network out of the box and popular hardware wallets can also be used to sign transactions on the network.
 
 ## Main parameters about ILGON
@@ -11,11 +12,12 @@ ILGON uses the same address scheme as Ethereum, and Ethereum smart contracts run
 **Block reward (current):** 20 ILG
 **Block time (target):** 5s
 **Block gas limit (target):** >= 20.000.000
+**Min gas price:** 1 gwei (will be increased to about USD 0.03 equivalent for 21000 gas to protect against flooding the network)
 **Technology**: Ethereum based
 **Smart contracts**: full ethereum compatibility
 **API**: same as openethereum v3.0.1
-**Consensus mechanism:** Openethereum POA Authority round
-**Number of POA validators:** 3 (increased to 7 by 2021 february 10)
+**Consensus mechanism:** Openethereum POhA Authority round
+**Number of POA validators:** 3 (to be increased to 7 by 2021 february 10)
 **Default port:** 30303 UDP and TCP
 **Default RPC port:** 8545
 
@@ -23,6 +25,8 @@ ILGON uses the same address scheme as Ethereum, and Ethereum smart contracts run
 
 The current network topology of the ILGON and some connected services is shown on the picture below:
 ![topology](architecture.png)
+
+Validators are the core of the system so they are hidden behind the tor network to prevent DOS attacks against them.
 
 The Main components are:
 * Validators (V1, V2, ..)
@@ -34,7 +38,7 @@ The Main components are:
 * Explorer (https://ilgonexplorer.com)
 * Mobile wallets (not in the store yet)
 * Web wallet + widget (https://ilgonwallet.com)
-* RPC API (https://rpc-mainnet.ilgonwallet.com)
+* RPC API (https://rpc-mainnet.ilgonwallet.com)h
 * connected services (eHáz, Data storage)
 
 We will talk about these components in detail later.
@@ -43,7 +47,7 @@ We will talk about these components in detail later.
 
 ILGON has a mainnet and a public testnet available to the public.
 
-### Mainnet
+### Mainnet information
 
 * genesis block: https://gitlab.com/ilc-projekt/ilc-project-infrastructure/mainnet-genesis
 * network id: 0x696c67
@@ -74,7 +78,7 @@ ILGON has a mainnet and a public testnet available to the public.
     * 0x4784bdB3d84CB6D77D959B98CB51c7BDA2616753 (weight 1)
     * 0xad19E2114aD5c758fa6f2eC2c4002d4b7eab75db (weight 1)
 
-### Testnet
+### Testnet information
 
 * genesis block: https://gitlab.com/ilc-projekt/ilc-project-infrastructure/testnet-genesis
 * bootnodes: 163.47.11.62, 161.97.121.183, 13.251.200.141
@@ -82,13 +86,13 @@ ILGON has a mainnet and a public testnet available to the public.
 * explorer: https://testnet.ilgonexplorer.com/
 * RPC: https://testnet-rpc.ilgonwallet.com/
 * network id: 0x696c6774
-* premine and dovernance owner:	0xE5cfCB8bb377f3aD008E562FdD8F4A52706D5648
+* premine and governance owner:	0xE5cfCB8bb377f3aD008E562FdD8F4A52706D5648
 * FAUCET: 0x2d72d155a258697d366f5e2cf4fbb3186cc432fa
 
 ## Running a node
 
-ILGON builds on the Authority round consensus mechanism of **openethereum v3.0.1**. After 3.0.1 openethereum removed some features necessary for POA so running an ILGON node - currently - requires you to download and run openethereum v3.0.1.
-We are working on the foundation of Openethereum to make a more generic governance model possible. Our target is to achieve a dPOS modus operandi in the coming 1-2 years but vanilla openethereum node software is a good start to build trust. So - for now - you won't be required to run any custom node software.
+ILGON builds on the Authority round consensus mechanism of **openethereum v3.0.1**. After 3.0.1 openethereum removed some features necessary for fee governance so running an ILGON node - currently - requires you to download and run openethereum v3.0.1.
+We are working on the foundation of Openethereum to make a more generic governance model possible. Our target is to achieve a dPoS modus operandi in the coming 1-2 years but vanilla openethereum node software is a good start to build trust. So - for now - you won't be required to run any custom node software.
 
 So how is it possible to use the openethereum node software to run a different netwok? It is the genesis block, spegicically the genesis JSON file that has to be properly provided.
 
@@ -96,18 +100,19 @@ So how is it possible to use the openethereum node software to run a different n
 
 In each blockchan the first block has it own, special role. This is the only block in the network that does not have a parent block and it defines a common starting point for the network nodes. All nodes participating in the ILGON network must know the genesis block, that is how they can validate the succeeding blocks and apply the governance rules.
 
-What does the genesis block do in case of Openethereum?
+What does the genesis block do in case of ILGON/Openethereum?
 
 * it sets vital network parameters
-* it is used to deploy some smart contracts required for the ntwork to operate
+* it is used to deploy some governance smart contracts required for the network to operate
 * it listst the bootnodes of the network by IP
+* it defines the premine
 
 The genesis block of the main network and the testnet are provided in the below repositories:
 
 * https://gitlab.com/ilc-projekt/ilc-project-infrastructure/mainnet-genesis
 * https://gitlab.com/ilc-projekt/ilc-project-infrastructure/testnet-genesis
 
-We have also inclided the 2 genesis files here:
+We have also inclided the 2 genesis files in this repository here:
 * mainnet: [ilgGenesis.json](ilgGenesis.json)
 * testnet: [ilgtGenesis.json](ilgtGenesis.json)
 
@@ -142,4 +147,19 @@ The main tools that we suggest you to use:
 
 ## Deep technical details
 
-### ....
+As mentioned the project has the following components:
+
+* Validators (V1, V2, ..)
+* Bootnodes (BN1, BN2, ...)
+* Ordinary netwrok nodes (N1, N2, ..)
+* Governance contracts (staking, fee, reward, ..)
+* Supplementary contracts (Staking, Timestamping, ...)
+* Governance and premine keys
+* Explorer (https://ilgonexplorer.com)
+* Mobile wallets (not in the store yet)
+* Web wallet + widget (https://ilgonwallet.com)
+* RPC API (https://rpc-mainnet.ilgonwallet.com)h
+* connected services (eHáz, Data storage)
+
+Let's discuss these in a bit more detail.
+
