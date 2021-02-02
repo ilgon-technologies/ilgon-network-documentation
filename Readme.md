@@ -1,6 +1,6 @@
 # ILGON network documentation
 
-The ILGON network is an ethereum based network, technically very similar to the like the xDai chain and fully compatible with ethereum. ILGON is using Parity Openethereum V3.0.1 with the POA Authority round consensus mechanism so on the surface and on the node API level it is identical to Ethereum.
+The ILGON network is an ethereum based network, technically very similar to the xDai chain and fully compatible with ethereum. ILGON is using Parity Openethereum V3.0.1 with the POA Authority round consensus mechanism so on the surface and on the node API level it is identical to Ethereum.
 
 ILGON uses the same address scheme as Ethereum, and Ethereum smart contracts run on ILGON out of the box. Similarly, wallets that support adding custom ETH networks should support the network out of the box and popular hardware wallets can also be used to sign transactions on the network.
 
