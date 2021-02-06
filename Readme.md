@@ -88,7 +88,7 @@ ILGON has a mainnet and a public testnet available to the public.
 * RPC: https://testnet-rpc.ilgonwallet.com/
 * network id: 0x696c6774
 * premine and governance owner:	0xE5cfCB8bb377f3aD008E562FdD8F4A52706D5648
-* FAUCET: 0x2d72d155a258697d366f5e2cf4fbb3186cc432fa
+* FAUCET: https://faucet.testnet.ilgonwallet.com/ (0x2d72d155a258697d366f5e2cf4fbb3186cc432fa)
 
 ## Running a node
 
