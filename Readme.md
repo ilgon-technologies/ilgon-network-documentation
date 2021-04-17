@@ -4,6 +4,8 @@ The ILGON network is an ethereum based network, technically very similar to the 
 
 ILGON uses the same address scheme as Ethereum, and Ethereum smart contracts run on ILGON out of the box. Similarly, wallets that support adding custom ETH networks should support the network out of the box and popular hardware wallets can also be used to sign transactions on the network.
 
+ILGON uses a different port (60606) for node communications and also a different network ID.
+
 ## Main parameters about ILGON
 
 **Symbol:** ILG  
@@ -12,13 +14,13 @@ ILGON uses the same address scheme as Ethereum, and Ethereum smart contracts run
 **Block reward (current):** 20 ILG  
 **Block time (target):** 5s  
 **Block gas limit (target):** >= 20.000.000  
-**Min gas price:** 1 gwei (will be increased to about USD 0.03 equivalent for 21000 gas to protect against flooding the network)  
+**Min gas price:** 10000 gwei  
 **Technology**: Ethereum based  
 **Smart contracts**: full ethereum compatibility  
-**API**: same as openethereum v3.0.1  
-**Consensus mechanism:** Openethereum POhA Authority round  
-**Number of POA validators:** 3 (to be increased to 7 by 2021 february 10)  
-**Default port:** 30303 UDP and TCP  
+**RPC API**: same as openethereum v3.0.1  
+**Consensus mechanism:** Openethereum AuRa  
+**Number of POA validators:** 3 to 7  
+**Default port:** 60606 UDP and TCP  
 **Default RPC port:** 8545
 
 ## Design, components
@@ -50,13 +52,13 @@ ILGON has a mainnet and a public testnet available to the public.
 
 ### Mainnet information
 
-* genesis block: https://gitlab.com/ilc-projekt/ilc-project-infrastructure/mainnet-genesis
+* genesis block: https://github.com/ilgon-technologies/ilgon-genesis/blob/master/out/ilg-main.json
 * network id: 0x696c67
 * symbol: ILG
 * wallet: https://ilgonwallet.com/ (through cloudflare)
 * explorer: https://www.ilgonexplorer.com/ (through cloudflare)
 * RPC: https://mainnet-rpc.ilgonwallet.com/ (through cloudflare)
-* validator addresses:
+* current validator addresses:
   * 0x236acb7b5127e88fd54c5492d570c2b33591dc4d
   * 0xb534163f6e9e4258c0ff4eaea2f480ae43ababaa
   * 0x09a87685fa46057e2f62b2e4ac5ebd78b4c3e2d9
@@ -81,20 +83,20 @@ ILGON has a mainnet and a public testnet available to the public.
 
 ### Testnet information
 
-* genesis block: https://gitlab.com/ilc-projekt/ilc-project-infrastructure/testnet-genesis
-* bootnodes: 163.47.11.62, 161.97.121.183, 13.251.200.141
+* genesis block: https://github.com/ilgon-technologies/ilgon-genesis/blob/master/out/ilg-test.json
+* network id: 0x696c6774
+* symbol: ILGT
 * wallet: https://ilgonwallet.com/ (switch network)
 * explorer: https://testnet.ilgonexplorer.com/
 * RPC: https://testnet-rpc.ilgonwallet.com/
-* network id: 0x696c6774
 * premine and governance owner:	0xE5cfCB8bb377f3aD008E562FdD8F4A52706D5648
 * FAUCET: https://faucet.ilgonwallet.com/ (0x2d72d155a258697d366f5e2cf4fbb3186cc432fa)
 
 ## Running a node
 
-ILGON builds on the Authority round consensus mechanism of **openethereum v3.0.1**. After 3.0.1 openethereum removed some features necessary for fee governance so running an ILGON node - currently - requires you to download and run openethereum v3.0.1.
+ILGON builds on the Authority round consensus mechanism of **openethereum v3.0.1**.
 
-We are working on the foundation of Openethereum to make a more generic governance model possible. Our target is to achieve a dPoS modus operandi in the coming 1-2 years but vanilla openethereum node software is a good start to build trust. So - for now - you won't be required to run any custom node software.
+We are working on the foundation of Openethereum to make a more generic governance model possible. Our target is to achieve a dPoS modus operandi in the coming 1-2 years but vanilla openethereum node software is a good start to build trust. So - for now until no protocol breaking changes are introducet - you will be able to connect to the ILGON network using vanilla openethereum node.
 
 So how is it possible to use the openethereum node software to run a different netwok? It is the genesis block, specifically the genesis JSON file that has to be properly provided.
 
@@ -102,7 +104,7 @@ So how is it possible to use the openethereum node software to run a different n
 
 In each blockchan the first block has it own, special role. This is the only block in the network that does not have a parent block and it defines a common starting point for the network nodes. All nodes participating in the ILGON network must know the genesis block, that is how they can validate the succeeding blocks and apply the governance rules.
 
-What does the genesis block do in case of ILGON/Openethereum?
+What does the genesis block do in case of ILGON?
 
 * it sets vital network parameters
 * it is used to deploy some governance smart contracts required for the network to operate
@@ -115,23 +117,23 @@ The genesis block of the main network and the testnet are provided in the below 
 * https://gitlab.com/ilc-projekt/ilc-project-infrastructure/testnet-genesis
 
 We have also included the 2 genesis files in this repository here:
-* mainnet: [ilgGenesis.json](ilgGenesis.json)
-* testnet: [ilgtGenesis.json](ilgtGenesis.json)
+* mainnet: [ilg-main.json](ilg-main.json)
+* testnet: [ilg-test.json](ilg-test.json)
 
-**NOTE** that the list of bootnodes hence the genesis.json file can change over time but other defining parameters of the genesis.json file should not be muted.
+**NOTE** that the list of bootnodes hence the genesis.json file can change over time but other defining parameters of the genesis.json file should not be muted unless there is a breaking protocol change.
 
 ### Start a node manually
 
-To start a network node just use openethereum **v3.0.1** as you would for ethereum and provide the appropriate genesis.json file using the --chain parameter:
+To start a network node just build it from the main ILGON repository at https://github.com/ilgon-technologies/ilgon-node or use openethereum **v3.0.1** as you would for ethereum and provide the appropriate genesis.json file using the --chain parameter:
 
 For the mainnet use:
 ```
-openethereum --chain ilgGenesis.json ......
+openethereum --chain ilg-main.json ......
 ```
 
 For the testnet use:
 ```
-openethereum --chain ilgtGenesis.json ......
+openethereum --chain ilg-test.json ......
 ```
 
 ### Use the pre-built docker images
@@ -140,8 +142,26 @@ There are some prebuilt fullnode docker images on dockerhub for the network:
  
 https://hub.docker.com/u/ilgon
 
-The ilgnode and ilgtnode images are normal archive nodes without open RPC ports,
-the publicilgnode and publicilgtnode builds also expose the necessary RPC port for node communication but only allows the secure RPC commands to be executed.
+We recommend using the ilgon/node image for normal archive network nodes with unprotected RPC and built in prometheus metrics export.
+The image will by default connect to the main ILGON network but you can connect to the testnet. The image also contains the ethereum-prometheus-exporter to allow the node to be monitored by prometheus, you can enable or disable this feature.
+
+To connect to the testnet instead of the mainnet you can uset the ILGON_TESTNET env parameter:
+```
+docker run  [...] -e "ILGON_TESTNET=true" [...] ilgon/node
+
+```
+
+To enable the prometheus metrics set the **ILGON_METRICS_ENABLED** env variable to true:
+```
+docker run  [...] -e "ILGON_METRICS_ENABLED=true" [...] ilgon/node
+
+```
+
+You can also use the ilgon/node-base image which is just the pure build node. In this case you will have to provide the proper genesis file and the --port 60606 parameter when starting the node.
+
+The node-public image also exposes the necessary RPC port through an HTTP proxy filter and only allows the secure RPC commands to be executed. This should be used to providing public RPC services.
+
+*The ilgnode, ilgtnode, monitorclient, publicilgnode and publicilgtnode builds are deprecated, do not use them!*
 
 The monitorclient is just a node image to monitor the healthyness of a node by monitoring the last block timestamp.
 
@@ -175,5 +195,4 @@ As mentioned the project has the following components:
 * RPC API (https://rpc-mainnet.ilgonwallet.com)h
 * connected services (eHáz, Data storage)
 
-Let's discuss these in a bit more detail.
 
